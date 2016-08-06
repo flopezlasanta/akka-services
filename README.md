@@ -11,18 +11,25 @@ This a study project for practicing with [Akka](http://akka.io/).
 
 **Structure**
 
-In `Main` a new HTTP server is launched using the `Http` class. The `bindAndHandle()` method starts a new HTTP server and uses the given 'handler' `Flow` for processing incoming connections.
-
 This project applies extensively the [Thin Cake Pattern](http://www.cakesolutions.net/teamblogs/2011/12/19/cake-pattern-in-depth):
 
-- `Main` extends from `Services` trait
-- `Services` initializes the actors system
-- `Services` extends from `Config` and `Routes`
-- `Config` loads configuration parameters (e.g. HTTP interface and port, eventually database connection settings)
-- `Routes` provides the route directives (very similar to the ones from [Spray](http://spray.io/))
-- `Routes` extends from `SysRoute` and `UserRoute`
-- `SysRoute` relies on `Ping` case class
-- `UserRoute` relies on `User` case class
+```scala
+// launches a HTTP server
+object Main extends App with Services
+
+// initializes the actors system
+trait Services extends Config with Routes
+
+// loads configuration parameters (e.g. HTTP interface and port, eventually database connection settings...)
+trait Config
+
+// provides the routes directives (very similar to the ones from [Spray](http://spray.io/))
+trait Routes extends ErrorHandler with SysRoute with UserRoute
+
+// provide the domain objects, later marshalled / unmarshalled thanks to the JSON Support from [Akka HTTP Spray Json](http://doc.akka.io/docs/akka/2.4/scala/http/common/json-support.html)  
+case class Ping
+case class User
+```
 
 ## Extras
 

@@ -16,6 +16,8 @@ trait Services extends Config with Routes {
 
   implicit val timeout = Timeout(10 seconds)
 
+  // TODO add logging mechanism
+
 }
 
 object Main extends App with Services {
