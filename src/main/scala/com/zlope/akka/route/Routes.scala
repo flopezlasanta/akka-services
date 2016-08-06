@@ -14,7 +14,7 @@ trait ErrorHandler {
   }
 }
 
-trait Routes extends ErrorHandler with SysRouteRoute with UserRoute {
+trait Routes extends ErrorHandler with SysRoute with UserRoute {
 
   val v1 = "v1"
 
