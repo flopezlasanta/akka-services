@@ -26,9 +26,13 @@ trait Config
 // provides the routes directives (very similar to the ones from [Spray](http://spray.io/))
 trait Routes extends ErrorHandler with SysRoute with UserRoute
 
+trait ErrorHandler
+trait SysRoute extends DefaultJsonProtocol with SprayJsonSupport
+trait UserRoute extends DefaultJsonProtocol with SprayJsonSupport
+
 // provide the domain objects, later marshalled / unmarshalled thanks to the JSON Support from [Akka HTTP Spray Json](http://doc.akka.io/docs/akka/2.4/scala/http/common/json-support.html)  
-case class Ping
-case class User
+case class Ping // used in SysRoute
+case class User // used in UserRoute
 ```
 
 ## Extras
