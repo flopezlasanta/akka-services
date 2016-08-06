@@ -16,12 +16,10 @@ trait Services extends Config with Routes {
 
   implicit val timeout = Timeout(10 seconds)
 
-  // TODO add logging mechanism
-
 }
 
 object Main extends App with Services {
 
-  Http().bindAndHandle(routes, interface = httpInterface, port = httpPort)
+  Http().bindAndHandle(routes, interface = httpHost, port = httpPort)
 
 }

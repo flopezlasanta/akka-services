@@ -3,9 +3,10 @@
 [![Travis CI Status](https://travis-ci.org/flopezlasanta/akka-services.svg?branch=master)](https://travis-ci.org/flopezlasanta/akka-services) [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
 
 ## Summary
-This a study project for practicing with [Akka](http://akka.io/).
+This a study project for playing with [Akka](http://akka.io/).
 
-* Develop HTTP-based services with [Akka HTTP](http://doc.akka.io/docs/akka/2.4.8/scala/http/introduction.html)
+- [Akka HTTP](http://doc.akka.io/docs/akka/2.4.8/scala/http/introduction.html)
+  - [Akka HTTP Spray Json](http://doc.akka.io/docs/akka/2.4/scala/http/common/json-support.html)
 
 ## Project Description
 
@@ -30,7 +31,7 @@ trait ErrorHandler
 trait SysRoute extends DefaultJsonProtocol with SprayJsonSupport
 trait UserRoute extends DefaultJsonProtocol with SprayJsonSupport
 
-// provide the domain objects, later marshalled / unmarshalled thanks to the JSON Support from [Akka HTTP Spray Json](http://doc.akka.io/docs/akka/2.4/scala/http/common/json-support.html)  
+// provide the domain objects, later marshalled / unmarshalled thanks to the JSON Support from Akka HTTP Spray Json  
 case class Ping // used in SysRoute
 case class User // used in UserRoute
 ```
@@ -43,9 +44,10 @@ case class User // used in UserRoute
 - [ ] Make the project Heroku aware
 - [ ] Add automated testing
 - [ ] Add logging mechanism
-- [ ] Add marshalling (now it is relying on JSON)
-- [ ] Add internal database (e.g. Redis or Postgres) and use Slick
-- [ ] Query external API (e.g. Twitter or Google)
+- [ ] Add clustering capabilities
+- [ ] Add custom marshalling (instead of the default JSON)
+- [ ] Use internal database (e.g. Redis or Postgres) with Slick
+- [ ] Interact with external system (e.g. Twitter or Google)
 
 **Thanks to…**
 
