@@ -1,7 +1,7 @@
 # Actor Services
 Actor Services
 
-[![Travis CI Status](https://travis-ci.org/flopezlasanta/actor-services.svg?branch=master)](https://travis-ci.org/flopezlasanta/actor-services) [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
+[![Travis CI Status](https://travis-ci.org/flopezlasanta/akka-services.svg?branch=master)](https://travis-ci.org/flopezlasanta/akka-services) [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
 
 ## Summary
 This a personal project for practicing with [Akka](http://akka.io/).
