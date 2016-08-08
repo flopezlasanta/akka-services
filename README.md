@@ -29,9 +29,9 @@ trait Config
 trait Routes extends ErrorHandler with SysRoute with UserRoute with UrlRoute
 
 trait ErrorHandler
-trait SysRoute extends DefaultJsonProtocol with SprayJsonSupport // provides basic network functions (only ping by now)
+trait SysRoute extends DefaultJsonProtocol with SprayJsonSupport // provides network functions (only ping by now)
 trait UserRoute extends DefaultJsonProtocol with SprayJsonSupport 
-trait UrlRoute extends DefaultJsonProtocol with SprayJsonSupport // provides a simple URL shortener
+trait UrlRoute // provides a simple URL shortener
 
 // provide the domain objects, later marshalled / unmarshalled thanks to the JSON Support from Akka HTTP Spray Json  
 case class Ping // used in SysRoute
