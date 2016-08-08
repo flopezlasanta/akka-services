@@ -1,16 +1,14 @@
 package com.zlope.akka.route
 
-import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import scredis.Redis
-import spray.json.DefaultJsonProtocol
 
 import scala.concurrent.Future
 import scala.util.{Failure, Random, Success}
 
-trait UrlRoute extends DefaultJsonProtocol with SprayJsonSupport {
+trait UrlRoute {
 
   val domain = "http://zlope.com"
 
