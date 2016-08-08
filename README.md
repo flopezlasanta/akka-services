@@ -3,10 +3,11 @@
 [![Travis CI Status](https://travis-ci.org/flopezlasanta/akka-services.svg?branch=master)](https://travis-ci.org/flopezlasanta/akka-services) [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
 
 ## Summary
-This a study project for playing with [Akka](http://akka.io/).
+This a study project for playing with [Akka](http://akka.io/) ecosystem:
 
 - [Akka HTTP](http://doc.akka.io/docs/akka/2.4.8/scala/http/introduction.html)
-  - [Akka HTTP Spray Json](http://doc.akka.io/docs/akka/2.4/scala/http/common/json-support.html)
+- [Akka HTTP Spray JSON](http://doc.akka.io/docs/akka/2.4/scala/http/common/json-support.html)
+- [Akka based Redis Client](https://github.com/scredis/scredis)
 
 ## Project Description
 
@@ -25,11 +26,12 @@ trait Services extends Config with Routes
 trait Config
 
 // provides the routes directives (very similar to the ones from [Spray](http://spray.io/))
-trait Routes extends ErrorHandler with SysRoute with UserRoute
+trait Routes extends ErrorHandler with SysRoute with UserRoute with UrlRoute
 
 trait ErrorHandler
-trait SysRoute extends DefaultJsonProtocol with SprayJsonSupport
-trait UserRoute extends DefaultJsonProtocol with SprayJsonSupport
+trait SysRoute extends DefaultJsonProtocol with SprayJsonSupport // provides network functions (only ping by now)
+trait UserRoute extends DefaultJsonProtocol with SprayJsonSupport 
+trait UrlRoute // provides a simple URL shortener
 
 // provide the domain objects, later marshalled / unmarshalled thanks to the JSON Support from Akka HTTP Spray Json  
 case class Ping // used in SysRoute
@@ -46,7 +48,9 @@ case class User // used in UserRoute
 - [ ] Add logging mechanism
 - [ ] Add clustering capabilities
 - [ ] Add custom marshalling (instead of the default JSON)
-- [ ] Use internal database (e.g. Redis or Postgres) with Slick
+- [ ] Use Slick
+- [ ] Use Kafka
+- [ ] Use Spark
 - [ ] Interact with external system (e.g. Twitter or Google)
 
 **Thanks to…**
