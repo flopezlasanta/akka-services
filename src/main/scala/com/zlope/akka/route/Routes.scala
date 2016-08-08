@@ -14,11 +14,11 @@ trait ErrorHandler {
   }
 }
 
-trait Routes extends ErrorHandler with SysRoute with UserRoute {
+trait Routes extends ErrorHandler with SysRoute with UserRoute with UrlRoute {
 
   val v1 = "v1"
 
   val routes: Route =
-    pathPrefix(v1)(sysRoute ~ userRoute) ~ path("")(getFromResource("public/index.html"))
+    pathPrefix(v1)(sysRoute ~ userRoute ~ urlRoute) ~ path("")(getFromResource("public/index.html"))
 
 }

@@ -5,7 +5,7 @@ import java.util.Date
 
 object Time {
 
-  val sdf: SimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX")
+  val sdf: SimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 
   def timestamp: String = sdf.format(new Date)
 
