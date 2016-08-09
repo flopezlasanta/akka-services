@@ -22,10 +22,10 @@ object Main extends App with Services
 // initializes the actors system
 trait Services extends Config with Routes
 
-// loads configuration parameters (e.g. HTTP interface and port, eventually database connection settings...)
+// loads configuration parameters (e.g. HTTP interface and port, eventually DB connection settings...)
 trait Config
 
-// provides the routes directives (very similar to the ones from [Spray](http://spray.io/))
+// provides the routes directives (very similar to the ones from Spray)
 trait Routes extends ErrorHandler with SysRoute with UserRoute with UrlRoute
 
 trait ErrorHandler
@@ -44,10 +44,11 @@ case class User // used in UserRoute
 
 - [ ] Make the project Docker ready
 - [ ] Make the project Heroku aware
-- [ ] Add automated testing
-- [ ] Add logging mechanism
-- [ ] Add clustering capabilities
+- [ ] Add automated testing with ScalaTest
+- [ ] Add logging mechanism with LogBack
+- [ ] Add Akka clustering capabilities
 - [ ] Add custom marshalling (instead of the default JSON)
+- [ ] Add custom versioning
 - [ ] Use Slick
 - [ ] Use Kafka
 - [ ] Use Spark
