@@ -13,7 +13,5 @@ trait SysRoute extends DefaultJsonProtocol with SprayJsonSupport {
   implicit val pingFormat: RootJsonFormat[Ping] = jsonFormat1(Ping)
 
   val sysRoute: Route =
-    pathPrefix("ping") {
-      complete(Ping(Time.timestamp))
-    }
+    pathPrefix("ping")(complete(Ping(Time.timestamp)))
 }

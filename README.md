@@ -13,7 +13,7 @@ This a study project for playing with [Akka](http://akka.io/) ecosystem:
 
 **Structure**
 
-This project applies extensively the [Thin Cake Pattern](http://www.cakesolutions.net/teamblogs/2011/12/19/cake-pattern-in-depth):
+This project applies extensively the [Cake Pattern](http://www.cakesolutions.net/teamblogs/2011/12/19/cake-pattern-in-depth):
 
 ```scala
 // launches a HTTP server

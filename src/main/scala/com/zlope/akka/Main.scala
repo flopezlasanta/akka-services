@@ -1,6 +1,7 @@
 package com.zlope.akka
 
 import scala.concurrent.duration.DurationInt
+import akka.event.{LoggingAdapter, Logging}
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
@@ -16,10 +17,13 @@ trait Services extends Config with Routes {
 
   implicit val timeout = Timeout(10 seconds)
 
+  implicit val log: LoggingAdapter = Logging(system, getClass)
+
 }
 
 object Main extends App with Services {
 
+  log.info("Starting Akka-Services...")
   Http().bindAndHandle(routes, interface = httpHost, port = httpPort)
 
 }
