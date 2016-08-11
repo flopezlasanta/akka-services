@@ -45,8 +45,8 @@ case class User // used in UserRoute
 - [ ] Generate fat JAR
 - [ ] Make the project Docker ready
 - [ ] Make the project Heroku aware
-- [ ] Add automated testing with ScalaTest
-- [x] Add logging mechanism with LogBack
+- [x] Add automated testing with [ScalaTest](http://www.scalatest.org/)
+- [x] Add logging mechanism with [SLF4J](http://www.slf4j.org/) + [LogBack](http://logback.qos.ch/)
 - [ ] Add Akka clustering capabilities
 - [ ] Add custom marshalling (instead of the default JSON)
 - [ ] Add custom versioning
