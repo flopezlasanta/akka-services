@@ -10,22 +10,24 @@ import scala.util.{Failure, Random, Success}
 
 trait UrlRoute {
 
-  val domain = "http://zlope.com"
-
   implicit val redis = Redis()
 
+  val defaultDomain = "http://zlope.com"
+
+  val urlSegment = "url"
+
   val urlRoute: Route =
-    pathPrefix("url") {
+    pathPrefix(urlSegment) {
       (get & path(Segment)) {
         url => {
           val f: Future[Option[String]] = redis.get[String](url)
           onComplete(f) {
             case Success(option) => option match {
               // TODO instead of doing this code should redirect to the new URL and perhaps return MovedPermanently
-              case Some(result) => complete(StatusCodes.Found, result)
-              case None => complete(StatusCodes.NotFound, s"$url not registered")
+              case Some(result) => complete(StatusCodes.Found -> result)
+              case None => complete(StatusCodes.NotFound -> s"$url not registered")
             }
-            case Failure(e) => complete(StatusCodes.InternalServerError, s"$e (requested: $url)")
+            case Failure(e) => complete(StatusCodes.InternalServerError -> s"$e (requested: $url)")
           }
         }
       } ~ post {
@@ -33,7 +35,7 @@ trait UrlRoute {
           // TODO add URL validator; in case no valid URL then return BAD_REQUEST
           val random = Random.alphanumeric.take(7).mkString
           redis.set(url, random)
-          complete(StatusCodes.Accepted, s"$domain/$random") // no need to wait for redis thus better Accepted
+          complete(StatusCodes.Accepted -> s"$defaultDomain/$random") // no need to wait for redis thus better Accepted
         }
         }
       }
