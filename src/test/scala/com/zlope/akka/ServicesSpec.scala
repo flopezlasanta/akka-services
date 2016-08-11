@@ -16,11 +16,18 @@ class ServicesSpec extends WordSpec with Matchers with ScalatestRouteTest with S
   implicit val log = NoLogging
 
   "User" should {
-    "return John Doe for GET request to /user" in {
+    s"return JSON for GET request to /$v1/$userSegment" in {
       Get(s"/$v1/$userSegment") ~> routes ~> check {
         status shouldBe OK
         contentType shouldBe `application/json`
         responseAs[User] shouldBe johnDoe
+      }
+    }
+    s"return String for POST request to /$v1/$userSegment" in {
+      Post(s"/$v1/$userSegment", johnDoe) ~> routes ~> check {
+        status shouldBe OK
+        contentType shouldBe `text/plain(UTF-8)`
+        responseAs[String].length should be > 0
       }
     }
   }
