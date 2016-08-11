@@ -16,10 +16,11 @@ trait ErrorHandler {
 
 trait Routes extends ErrorHandler with SysRoute with UserRoute with UrlRoute {
 
+  val index = "public/index.html"
   val v1 = "v1"
 
   val routes: Route =
     logRequestResult("akka-services") {
-      pathPrefix(v1)(sysRoute ~ userRoute ~ urlRoute) ~ path("")(getFromResource("public/index.html"))
+      pathPrefix(v1)(sysRoute ~ userRoute ~ urlRoute) ~ path("")(getFromResource(index))
     }
 }

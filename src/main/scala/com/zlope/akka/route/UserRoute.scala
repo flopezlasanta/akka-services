@@ -11,12 +11,12 @@ trait UserRoute extends DefaultJsonProtocol with SprayJsonSupport {
 
   implicit val userFormat: RootJsonFormat[User] = jsonFormat4(User)
 
-  val jdoe = User("jdoe", "John", "Doe", 40)
+  val jdoeUser = User("jdoe", "John", "Doe", 40)
 
   val userRoute: Route =
     pathPrefix("user") {
       pathEnd(
-        get { complete(StatusCodes.OK, jdoe) } ~
+        get { complete(StatusCodes.OK, jdoeUser) } ~
         post(entity(as[User]) { user ⇒ complete(StatusCodes.OK, user.toString) }))
     }
 

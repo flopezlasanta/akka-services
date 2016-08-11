@@ -1,18 +1,23 @@
 package com.zlope.akka
 
-import akka.http.scaladsl.model.ContentTypes._
-import akka.http.scaladsl.model.StatusCodes._
+import akka.event.NoLogging
+import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.testkit.ScalatestRouteTest
-import com.zlope.akka.model.User
-import org.scalatest._
+import akka.util.Timeout
+import org.scalatest.{Matchers, WordSpec}
 
-class ServicesSpec extends FlatSpec with Matchers with ScalatestRouteTest with Services {
+import scala.concurrent.duration.DurationInt
 
-  "Service" should "respond to query" in {
-    Get(s"/user}") ~> routes ~> check {
-      status shouldBe OK
-      contentType shouldBe `application/json`
-      responseAs[User] shouldBe jdoe
+class ServicesSpec extends WordSpec with Matchers with ScalatestRouteTest with Services {
+
+  implicit val timeout = Timeout(1 minute)
+  implicit val log = NoLogging
+
+  "User" should {
+    "return John Doe for GET request to /user" in {
+      Get() ~> routes ~> check {
+        status shouldBe StatusCodes.OK
+      }
     }
   }
 

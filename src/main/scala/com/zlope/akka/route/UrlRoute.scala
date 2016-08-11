@@ -14,7 +14,7 @@ trait UrlRoute {
 
   implicit val redis = Redis()
 
-  def urlRoute: Route =
+  val urlRoute: Route =
     pathPrefix("url") {
       (get & path(Segment)) {
         url => {
