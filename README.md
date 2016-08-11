@@ -42,6 +42,7 @@ case class User // used in UserRoute
 
 **TODO**
 
+- [ ] Generate fat JAR
 - [ ] Make the project Docker ready
 - [ ] Make the project Heroku aware
 - [ ] Add automated testing with ScalaTest
