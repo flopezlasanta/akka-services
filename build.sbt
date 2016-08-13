@@ -29,3 +29,7 @@ libraryDependencies ++= {
     "com.livestream"    %% "scredis" % scredisVersion
     )
 }
+
+mainClass in assembly := Some("com.zlope.akka.Main")
+
+assemblyJarName := "akka-services.jar"
