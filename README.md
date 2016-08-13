@@ -42,7 +42,7 @@ case class User // used in UserRoute
 
 **TODO**
 
-- [ ] Generate fat JAR
+- [x] Generate fat JAR: ```sbt assembly```
 - [ ] Make the project Docker ready
 - [ ] Make the project Heroku aware
 - [x] Add automated testing with [ScalaTest](http://www.scalatest.org/)
