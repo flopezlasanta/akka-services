@@ -4,13 +4,14 @@ import akka.actor.ActorSystem
 import akka.pattern.ask
 import akka.testkit.TestActorRef
 import akka.util.Timeout
-import org.scalatest.{BeforeAndAfterEach, FunSpecLike, Matchers}
+import org.scalatest.{FunSpecLike, Matchers}
 
 import scala.concurrent.duration._
 import scala.util.{Failure, Success}
 
 // Synchronous Unit Testing with TestActorRef
-class AkkademySpec extends FunSpecLike with Matchers with BeforeAndAfterEach {
+class AkkademySpec extends FunSpecLike with Matchers {
+
   implicit val system = ActorSystem()
   implicit val timeout = Timeout(5 seconds)
 
@@ -40,8 +41,8 @@ class AkkademySpec extends FunSpecLike with Matchers with BeforeAndAfterEach {
       it("should return the object received if unknown") {
         val actorRef = TestActorRef(new Akkademy)
         val future = actorRef ? "unknown"
-        val Failure(exception: Exception) = future.value.get
-        exception.getMessage should be("unknown")
+        val Failure(message: UnknownMessage) = future.value.get
+        message.getMessage should be("unknown")
       }
     }
   }
