@@ -1,12 +1,18 @@
 package com.zlope.akka.akkademy
 
 import akka.actor.ActorSystem
+import akka.pattern.ask
 import akka.testkit.TestActorRef
-import com.zlope.akka.akkademy.message.SetMessage
+import akka.util.Timeout
 import org.scalatest.{BeforeAndAfterEach, FunSpecLike, Matchers}
 
+import scala.concurrent.duration._
+import scala.util.{Failure, Success}
+
+// Synchronous Unit Testing with TestActorRef
 class AkkademySpec extends FunSpecLike with Matchers with BeforeAndAfterEach {
   implicit val system = ActorSystem()
+  implicit val timeout = Timeout(5 seconds)
 
   describe("Akkademy") {
     describe("given SetMessage") {
@@ -24,6 +30,18 @@ class AkkademySpec extends FunSpecLike with Matchers with BeforeAndAfterEach {
 
         val akkademy = actorRef.underlyingActor
         akkademy.map.get("key") should equal(Some("value2"))
+      }
+      it("should return the key received") {
+        val actorRef = TestActorRef(new Akkademy)
+        val future = actorRef ? SetMessage("key", "value")
+        val Success(key: String) = future.value.get
+        key should be("key")
+      }
+      it("should return the object received if unknown") {
+        val actorRef = TestActorRef(new Akkademy)
+        val future = actorRef ? "unknown"
+        val Failure(exception: Exception) = future.value.get
+        exception.getMessage should be("unknown")
       }
     }
   }

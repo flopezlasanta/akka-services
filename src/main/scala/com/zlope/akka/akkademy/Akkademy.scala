@@ -1,9 +1,10 @@
 package com.zlope.akka.akkademy
 
-import akka.actor.{Actor, ActorLogging}
-import com.zlope.akka.akkademy.message.SetMessage
+import akka.actor.{Actor, ActorLogging, Status}
 
 import scala.collection.mutable.HashMap
+
+case class SetMessage(key: String, value: Object)
 
 class Akkademy extends Actor with ActorLogging {
 
@@ -13,7 +14,11 @@ class Akkademy extends Actor with ActorLogging {
     case SetMessage(key, value) => {
       log.info(s"received SetMessage($key, $value)")
       map.put(key, value)
+      sender ! Status.Success(key)
     }
-    case unknown => log.error(s"received unknown message: $unknown")
+    case unknown => {
+      log.error(s"received unknown message: $unknown")
+      sender ! Status.Failure(new Exception(unknown.toString))
+    }
   }
 }
