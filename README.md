@@ -26,35 +26,15 @@ trait Services extends Config with Routes
 trait Config
 
 // provides the routes directives (very similar to the ones from Spray)
-trait Routes extends ErrorHandler with SysRoute with UserRoute with UrlRoute
+trait Routes extends ErrorHandler with SysRoute with UserRoute with UrlRoute with StocksRoute
 
 trait ErrorHandler
-trait SysRoute extends DefaultJsonProtocol with SprayJsonSupport // provides network functions (only ping by now)
+trait SysRoute extends DefaultJsonProtocol with SprayJsonSupport // system functions
 trait UserRoute extends DefaultJsonProtocol with SprayJsonSupport 
-trait UrlRoute // provides a simple URL shortener
+trait UrlRoute // simple URL shortener
+trait StocksRoute // stocks info
 
 // provide the domain objects, later marshalled / unmarshalled thanks to the JSON Support from Akka HTTP Spray Json  
-case class Ping // used in SysRoute
+case class SimpleMessage // used in SysRoute
 case class User // used in UserRoute
 ```
-
-## Extras
-
-**TODO**
-
-- [x] Generate fat JAR: ```sbt assembly```
-- [ ] Make the project Docker ready
-- [ ] Make the project Heroku aware
-- [x] Add automated testing with [ScalaTest](http://www.scalatest.org/)
-- [x] Add logging mechanism with [SLF4J](http://www.slf4j.org/) + [LogBack](http://logback.qos.ch/)
-- [ ] Add Akka clustering capabilities
-- [ ] Add custom marshalling (instead of the default JSON)
-- [ ] Add custom versioning
-- [ ] Use Slick
-- [ ] Use Kafka
-- [ ] Use Spark
-- [ ] Interact with external system (e.g. Twitter or Google)
-
-**Thanks to…**
-
-- [Daniela Sfregola](https://github.com/DanielaSfregola)
