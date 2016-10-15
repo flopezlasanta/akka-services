@@ -10,7 +10,9 @@ scalaVersion := "2.11.8"
 
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8", "-language", "postfixOps")
 
-packageName in Docker := "akka-http-docker-minimal-seed"
+packageName in Docker := "akka-services"
+
+maintainer in Docker := "flopezlasanta@gmail.com"
 
 dockerExposedPorts := Seq(9000)
 
@@ -34,4 +36,8 @@ libraryDependencies ++= {
     "org.scalatest"     %% "scalatest" % scalaTestVersion % "test",
     "com.livestream"    %% "scredis" % scredisVersion
     )
+}
+
+unmanagedResourceDirectories in Compile += {
+  baseDirectory.value / "src/main/resources"
 }

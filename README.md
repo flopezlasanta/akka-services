@@ -38,3 +38,11 @@ trait StocksRoute // stocks info
 case class SimpleMessage // used in SysRoute
 case class User // used in UserRoute
 ```
+
+**How to Run**
+
+1. Clone the project and run: `$ sbt docker:publishLocal`
+2. Run the container: `$ docker run -dit -p 9000:9000 --name akka-services:1.0`
+3. Stop the container: `$ docker stop akka-services`
+
+**How to Test**
