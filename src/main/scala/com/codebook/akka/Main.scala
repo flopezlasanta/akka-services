@@ -1,21 +1,25 @@
-package com.zlope.akka
+package com.codebook.akka
 
 import akka.actor.ActorSystem
-import akka.event.{Logging, LoggingAdapter}
+import akka.event.Logging
 import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
 import akka.util.Timeout
-import com.zlope.akka.config.Config
-import com.zlope.akka.route.Routes
+import com.codebook.akka.config.Config
+import com.codebook.akka.route.Routes
 
 import scala.concurrent.ExecutionContextExecutor
 import scala.concurrent.duration.DurationInt
 
-trait Services extends Config with Routes {
+trait ActorEnvironment {
 
   implicit val system: ActorSystem
   implicit def executor: ExecutionContextExecutor
   implicit val materializer: ActorMaterializer
+
+}
+
+trait Services extends Config with ActorEnvironment with Routes {
 
 }
 

@@ -1,4 +1,4 @@
-package com.zlope.akka.route
+package com.codebook.akka.route
 
 import akka.http.scaladsl.model.HttpResponse
 import akka.http.scaladsl.model.StatusCodes._
@@ -6,7 +6,7 @@ import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.{ExceptionHandler, Route}
 
 trait ErrorHandler {
-  implicit def myExceptionHandler: ExceptionHandler = ExceptionHandler {
+  implicit def myExceptionHandler = ExceptionHandler {
     case e: NoSuchElementException =>
       extractUri { uri =>
         complete(HttpResponse(NotFound, entity = s"Invalid id: ${e.getMessage}"))
@@ -14,13 +14,17 @@ trait ErrorHandler {
   }
 }
 
-trait Routes extends ErrorHandler with SysRoute with UserRoute with UrlRoute {
+trait Routes extends ErrorHandler with SysRoute with UserRoute with UrlRoute with StocksRoute {
 
   val index = "public/index.html"
-  val v1 = "v1"
+  val root = ""
+  val sys = "sys"
+  val api = "api"
 
-  val routes: Route =
+  def routes: Route =
     logRequestResult("akka-services") {
-      pathPrefix(v1)(sysRoute ~ userRoute ~ urlRoute) ~ path("")(getFromResource(index))
+      path(root)(getFromResource(index)) ~
+      pathPrefix(sys)(sysRoute) ~
+      pathPrefix(api)(userRoute ~ urlRoute ~ stocksRoute)
     }
 }

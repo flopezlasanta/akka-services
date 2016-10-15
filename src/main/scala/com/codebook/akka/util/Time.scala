@@ -1,4 +1,4 @@
-package com.zlope.akka.util
+package com.codebook.akka.util
 
 import java.text.SimpleDateFormat
 import java.util.Date

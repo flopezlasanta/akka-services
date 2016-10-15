@@ -1,23 +1,21 @@
-package com.zlope.akka.route
+package com.codebook.akka.route
 
 import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
+import com.codebook.akka.config.Config
 import scredis.Redis
 
 import scala.concurrent.Future
 import scala.util.{Failure, Random, Success}
 
-trait UrlRoute {
+// simple URL shortener
+trait UrlRoute extends Config {
 
   implicit val redis = Redis()
 
-  val defaultDomain = "http://zlope.com"
-
-  val urlSegment = "url"
-
-  val urlRoute: Route =
-    pathPrefix(urlSegment) {
+  lazy val urlRoute: Route =
+    pathPrefix("url") {
       (get & path(Segment)) {
         url => {
           val f: Future[Option[String]] = redis.get[String](url)
@@ -35,7 +33,7 @@ trait UrlRoute {
           // TODO add URL validator; in case no valid URL then return BAD_REQUEST
           val random = Random.alphanumeric.take(7).mkString
           redis.set(url, random)
-          complete(StatusCodes.Accepted -> s"$defaultDomain/$random") // no need to wait for redis thus better Accepted
+          complete(StatusCodes.Accepted -> s"$httpHost:$httpPort/$random") // no need to wait for redis thus better Accepted
         }
         }
       }

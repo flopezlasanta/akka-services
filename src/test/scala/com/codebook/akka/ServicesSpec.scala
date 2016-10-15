@@ -1,11 +1,11 @@
-package com.zlope.akka
+package com.codebook.akka
 
 import akka.event.NoLogging
-import akka.http.scaladsl.model.StatusCodes._
 import akka.http.scaladsl.model.ContentTypes._
+import akka.http.scaladsl.model.StatusCodes._
 import akka.http.scaladsl.testkit.ScalatestRouteTest
 import akka.util.Timeout
-import com.zlope.akka.model.User
+import com.codebook.akka.model.User
 import org.scalatest.{Matchers, WordSpec}
 
 import scala.concurrent.duration.DurationInt
@@ -16,15 +16,15 @@ class ServicesSpec extends WordSpec with Matchers with ScalatestRouteTest with S
   implicit val log = NoLogging
 
   "User" should {
-    s"return JSON for GET request to /$v1/$userSegment" in {
-      Get(s"/$v1/$userSegment") ~> routes ~> check {
+    s"return JSON for GET request to /api/user" in {
+      Get(s"/api/user") ~> routes ~> check {
         status shouldBe OK
         contentType shouldBe `application/json`
-        responseAs[User] shouldBe johnDoe
+        responseAs[User] shouldBe JohnDoe
       }
     }
-    s"return String for POST request to /$v1/$userSegment" in {
-      Post(s"/$v1/$userSegment", johnDoe) ~> routes ~> check {
+    s"return String for POST request to /api/user" in {
+      Post(s"/api/user", JohnDoe) ~> routes ~> check {
         status shouldBe OK
         contentType shouldBe `text/plain(UTF-8)`
         responseAs[String].length should be > 0

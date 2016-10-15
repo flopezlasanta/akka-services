@@ -1,20 +1,16 @@
-package com.zlope.akka.akkademy
+package com.codebook.akka.actor
 
 import akka.actor.{Actor, ActorLogging, Props, Status}
+import com.codebook.akka.actor.message.{SetMessage, UnknownMessage}
 
 import scala.collection.mutable.HashMap
 
-// TODO move exception wrappers to a dedicated file outside
-case class UnknownMessage(message: String) extends Exception(message)
-
-// TODO move case classes for messages and exception wrappers to a project shared by client and server projects
-case class SetMessage(key: String, value: Object)
-
-object Akkademy {
-  def props = Props(classOf[Akkademy])
+object MessengerActor {
+  def props = Props(classOf[MessengerActor])
 }
 
-class Akkademy extends Actor with ActorLogging {
+// NOTE: not currently integrated with routes
+class MessengerActor extends Actor with ActorLogging {
 
   val map = new HashMap[String, Object]
 

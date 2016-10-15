@@ -1,12 +1,18 @@
+lazy val root = (project in file(".")).enablePlugins(JavaAppPackaging)
+
 name := "akka-services"
 
 version := "1.0"
 
-organization := "com.zlope"
+organization := "flopezlasanta"
 
 scalaVersion := "2.11.8"
 
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8", "-language", "postfixOps")
+
+packageName in Docker := "akka-http-docker-minimal-seed"
+
+dockerExposedPorts := Seq(9000)
 
 resolvers ++= Seq("Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/")
 
@@ -29,7 +35,3 @@ libraryDependencies ++= {
     "com.livestream"    %% "scredis" % scredisVersion
     )
 }
-
-mainClass in assembly := Some("com.zlope.akka.Main")
-
-assemblyJarName := "akka-services.jar"
