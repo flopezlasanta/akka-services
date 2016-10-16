@@ -37,7 +37,3 @@ libraryDependencies ++= {
     "com.livestream"    %% "scredis" % scredisVersion
     )
 }
-
-unmanagedResourceDirectories in Compile += {
-  baseDirectory.value / "src/main/resources"
-}
