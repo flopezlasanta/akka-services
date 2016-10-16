@@ -41,8 +41,21 @@ case class User // used in UserRoute
 
 **How to Run**
 
-1. Clone the project and run: `$ sbt docker:publishLocal`
-2. Run the container: `$ docker run -dit -p 9000:9000 --name akka-services:1.0`
-3. Stop the container: `$ docker stop akka-services`
+1. Clone the project: `git clone git@github.com:flopezlasanta/akka-services.git`
+2. Compile the code, generate a Docker image and publish locally: `$ sbt docker:publishLocal`
+3. Run the container `akka-services` together with `redis` via Docker Compose: `$ docker-compose up -d`
+4. Test with the different end points (see next section)
+5. Stop the containers via Docker Compose: `$ docker-compose stop`
 
 **How to Test**
+
+*Note: when using VM / Docker Machine (this is my case) then use its corresponding IP address; otherwise localhost.*
+
+- Check system health: `curl -X GET http://192.168.99.100:9000/sys/health | jq .`
+- Ping system: `curl -X GET http://192.168.99.100:9000/sys/ping | jq .`
+- ... 
+
+Another options is to:
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/34021b48a56eb5ffe000)
+
+And finally there's also a simple website (Bootstrap 3) listing all endpoints in: http://192.168.99.100:9000/
