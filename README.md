@@ -59,3 +59,5 @@ Another options is to:
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/34021b48a56eb5ffe000)
 
 And finally there's also a simple website (Bootstrap 3) listing all endpoints in: http://192.168.99.100:9000/
+
+![Simple Website](https://raw.githubusercontent.com/flopezlasanta/akka-services/master/page.png)
