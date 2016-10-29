@@ -60,4 +60,4 @@ Another options is to:
 
 And finally there's also a simple website (Bootstrap 3) listing all endpoints in: http://192.168.99.100:9000/
 
-![Simple Website](https://raw.githubusercontent.com/flopezlasanta/akka-services/master/page.png)
+<img src="https://raw.githubusercontent.com/flopezlasanta/akka-services/master/page.png" width="192">
