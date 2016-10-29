@@ -58,5 +58,7 @@ case class User // used in UserRoute
 Another options is to:
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/34021b48a56eb5ffe000)
 
-Also in root there will be simple website (made with Bootstrap 3) listing all endpoints: <img src="https://raw.githubusercontent.com/flopezlasanta/akka-services/master/page.png" width="192">
+Also in root there will be simple website (made with Bootstrap 3) listing all endpoints:
+
+<img src="https://raw.githubusercontent.com/flopezlasanta/akka-services/master/page.png" width="384">
 
