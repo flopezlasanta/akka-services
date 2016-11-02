@@ -3,7 +3,8 @@
 [![Travis CI Status](https://travis-ci.org/flopezlasanta/akka-services.svg?branch=master)](https://travis-ci.org/flopezlasanta/akka-services) [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
 
 ## Summary
-This is a study project for playing with [Akka](http://akka.io/) ecosystem, mainly the following:
+
+This is a study project for playing with [Akka](http://akka.io/) ecosystem:
 
 - [Akka HTTP](http://doc.akka.io/docs/akka/2.4.8/scala/http/introduction.html)
 - [Akka HTTP Spray JSON](http://doc.akka.io/docs/akka/2.4/scala/http/common/json-support.html)
